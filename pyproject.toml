@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "duden-mcp"
+version = "0.1.0"
+description = "Unofficial read-only MCP server for Duden (duden.de) — dictionary lookup, synonyms, spelling & verb conjugation"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "mcp<2",
+    "httpx>=0.27",
+]
+authors = [{ name = "Mohammad Abbasi" }]
+
+[project.scripts]
+duden-mcp = "duden_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/duden_mcp"]
+
+[tool.pytest.ini_options]
+markers = ["live: tests that hit the real https://www.duden.de site"]
